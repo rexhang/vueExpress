@@ -4,17 +4,28 @@ import isJquery from 'jquery'
 window.$ = isJquery
 window.jQuery = isJquery
 
-import BScroll from 'better-scroll'
-window.BScroll = BScroll
-
-import axios from 'axios'
-window.axios = axios
+require('./lib/rem/rem.js')
+require('./lib/sys/sys.js')
 
 import './lib/rex-ui/rex-ui.css'
+import './lib/bootstrap-Grid-System/bootstrap-gridSystem.min.css'
 
 import Vue from 'vue'
 import App from './App'
 import router from './router'
+
+import layer from 'vue-layer'
+Vue.prototype.$layer = layer(Vue)
+
+import axios from 'axios'
+Vue.prototype.$axios = axios
+
+import BScroll from 'better-scroll'
+Vue.prototype.$BScroll = BScroll
+
+import MuseUI from 'muse-ui'
+import 'muse-ui/dist/muse-ui.css'
+Vue.use(MuseUI)
 
 Vue.config.productionTip = false
 

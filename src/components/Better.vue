@@ -20,7 +20,9 @@
 </template>
 
 <script>
-
+import {API, conf} from '../config.js'
+console.log(API)
+console.log(conf)
 export default {
   name: 'better',
   data () {
@@ -29,10 +31,10 @@ export default {
     }
   },
   created() {
+  },
+  mounted(){
     let vm = this;
-    setTimeout(function(){
-      vm.init()
-    }, 0)
+    vm.init()
   },
   methods: {
     init: function(){
@@ -43,29 +45,33 @@ export default {
         click: true,
         scrollbar: true
       }
-      let scroll = new window.BScroll(wrapper, scrollConfig)
+      let scroll = new this.$BScroll(wrapper, scrollConfig)
     },
     showThisNum: function(e){
       console.log($(e.target).text())
     },
     getData: function(){
+      let that = this
+      that.$layer.loading(1)
       let getParams = {user: 'admin', pass: '123456'}
-      axios.get( 'https://rexhang.com/api/get.php', {params: getParams} )
-      .then(function (response) {
+      that.$axios.get( API.getTest, {params: getParams} )
+      .then( (response) => {
+          that.$layer.closeAll('loading')
           console.info(response.data)
       })
-      .catch(function (error) {
+      .catch( (error) => {
         console.error('error：' + error)
       })
     },
     postData: function(){
-      let postDATA = {user: 'admin', pass: '123456'};
+      let that = this
+      let postDATA = {user: 'admin', pass: '123456'}
       let urlParams = {token: 'admin'};
-      axios.post( 'https://rexhang.com/api/post.php', postDATA, {params: urlParams, transformRequest: function(data){return jQuery.param(data)}} )
-        .then(function (response) {
-          console.log(response.data);
+      that.$axios.post( API.postTest, postDATA, {params: urlParams, transformRequest: function(data){return jQuery.param(data)}} )
+        .then( (response) => {
+          console.log(response.data)
         })
-        .catch(function (error) {
+        .catch( (error) => {
           console.error('error：' + error);
         });
     }

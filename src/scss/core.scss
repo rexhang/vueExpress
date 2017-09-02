@@ -13,7 +13,10 @@ body{
       color: #2c3e50;
       background-color: #f2f2f2;
     }
-    .nav-wrap{
+    #appbar{
+      margin-bottom: 30px;
+    }
+    #topbar{
       display: flex;
       justify-content: center;
       background-color: #24292e;
@@ -54,6 +57,7 @@ body{
           }
           a{
             @include fonts(16px, #fff);
+            text-decoration: none;
             &:hover{
               color: rgba(255,255,255,0.75);
             }
@@ -66,6 +70,48 @@ body{
           a.login{
           }
         }
+      }
+    }
+    #index{
+      .binddata{
+        width: 9.333333rem;
+        height: 100px;
+        border: 1px solid red;
+        margin: 0 auto;
+        margin-bottom: 12px;
+      }
+      .bindlist{
+        width: 9.333333rem;
+        height: 20px;
+        border: 1px solid green;
+        margin: 0 auto;
+        margin-bottom: 12px;
+        text-align: left;
+      }
+      .form-content{
+        width: 9.333333rem;
+        margin: 0 auto;
+        text-align: left;
+        border: 2px solid #ff7300;
+        input[type="text"]{
+          text-indent: 14px;
+        }
+      }
+      .component{
+        width: 200px;
+        height: 30px;
+        line-height: 30px;
+        margin: 20px auto;
+        background-color: #1baedb;
+        cursor: pointer;
+      }
+      .demo-sel{
+        width: 300px;
+        height: auto;
+        margin: 20px auto;
+      }
+      .demo-sheet{
+        @extend .demo-sel;
       }
     }
 }
